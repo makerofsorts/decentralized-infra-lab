@@ -7,13 +7,13 @@ This production-vetted infrastructure showcases a resource-optimized, decentrali
 Public attack surfaces are isolated entirely to a low-power edge device operating as a high-interaction honeypot trap. Concurrently, core local automation and management systems are orchestrated using an elastic microservice container matrix running on an x86 Linux server, protected behind an internal reverse proxy and an encrypted Zero-Trust overlay network.
 
 ### 2. Network Architecture Topology
-
-                     [ GL.iNet Slate Plus Router ]
+```
+[ GL.iNet Slate Plus Router ]
                      (Network Gateway & WireGuard)
                                   |
          -----------------------------------------------------
         |                                                     |
-   [ Sunflower Farms ]                              [ IBN 5100 Server ]
+[ Raspberry Pi Zero 2 W ]                             [ IBN 5100 Server ]
 (Static IP: Edge Honeypot)                      (Static IP: Container Core)
         |                                                     |
   - Cowrie SSH Trap                                     - Portainer CE (Orchestration)
@@ -21,8 +21,8 @@ Public attack surfaces are isolated entirely to a low-power edge device operatin
                                                         - Uptime Kuma (Uptime Monitoring)
                                                         - Heimdall (App Dashboard)
 
-
-3. Bill of Materials (BoM)
+```
+### 3. Bill of Materials (BoM)
 Edge Routing Engine: GL.iNet Slate Plus (GL-A1300) running OpenWrt firmware.
 
 Infiltration Sentinel Node: Raspberry Pi Zero 2 W (Broadcom BCM2710A1, 512MB LPDDR2 RAM).
@@ -33,7 +33,7 @@ Operating Systems: Ubuntu Server 24.04 LTS (Headless x86) & Raspberry Pi OS Lite
 
 Container Runtime: Docker Engine v26+ with Docker Compose v2+.
 
-4. Deployment Playbook & Configuration Artifacts
+### 4. Deployment Playbook & Configuration Artifacts
 Phase A: The Edge Honeypot (Raspberry Pi Zero 2 W)
 Hardened production SSH accessibility by moving the valid operational SSH daemon to an alternative terminal port:
 
@@ -49,7 +49,7 @@ Formed an isolated container bridge network (proxy_network) inside the Docker en
 
 Automated the deployment of a persistent Portainer Management plane alongside an Nginx Reverse Proxy cluster using optimized resource constraints to preserve host memory.
 
-5. Validation & Security Posture Verification
+### 5. Validation & Security Posture Verification
 Host Efficiency Metrics: System baseline operations utilize less than 12% of total physical RAM capacity, preserving over 6.5GB of hardware headroom for active testing environments.
 
 Blast Radius Containment: Virtual boundary verification proves that a complete security breach or logical failure of the Raspberry Pi honeypot layer leaves the primary IBN 5100 processing database completely uncompromised.
